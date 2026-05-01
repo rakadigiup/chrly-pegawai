@@ -16,8 +16,7 @@
             <flux:table.rows>
                 @foreach($users as $user)
                     <flux:table.row :key="$user->id">
-                        <flux:table.cell class="flex items-center gap-2">
-                            <flux:avatar :name="$user->name" size="sm" />
+                        <flux:table.cell>
                             <span class="font-medium">{{ $user->name }}</span>
                         </flux:table.cell>
                         <flux:table.cell>{{ $user->email }}</flux:table.cell>
