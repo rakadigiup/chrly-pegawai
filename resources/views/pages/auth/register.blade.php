@@ -10,13 +10,13 @@
             <!-- Name -->
             <flux:input
                 name="name"
-                :label="__('Name')"
+                :label="__('Nama Lengkap')"
                 :value="old('name')"
                 type="text"
                 required
                 autofocus
                 autocomplete="name"
-                :placeholder="__('Full name')"
+                :placeholder="__('Nama Lengkap')"
             />
 
             <!-- Email Address -->
@@ -28,6 +28,45 @@
                 required
                 autocomplete="email"
                 placeholder="email@example.com"
+            />
+
+            <!-- Phone Number -->
+            <flux:input
+                name="phone"
+                :label="__('No HP')"
+                :value="old('phone')"
+                type="tel"
+                required
+                :placeholder="__('08123456789')"
+            />
+
+            <!-- Arrival Date -->
+            <flux:input
+                name="arrival_date"
+                :label="__('Tanggal Datang')"
+                :value="old('arrival_date')"
+                type="date"
+                required
+            />
+
+            <!-- Member Count -->
+            <flux:input
+                name="member_count"
+                :label="__('Jumlah Anggota')"
+                :value="old('member_count')"
+                type="number"
+                min="1"
+                required
+                :placeholder="__('Contoh: 1')"
+            />
+
+            <!-- Members -->
+            <flux:textarea
+                name="members"
+                :label="__('Nama Anggota')"
+                :value="old('members')"
+                required
+                :placeholder="__('Sebutkan nama-nama anggota (pisahkan dengan koma)')"
             />
 
             <!-- Password -->
@@ -44,11 +83,11 @@
             <!-- Confirm Password -->
             <flux:input
                 name="password_confirmation"
-                :label="__('Confirm password')"
+                :label="__('Konfirmasi password')"
                 type="password"
                 required
                 autocomplete="new-password"
-                :placeholder="__('Confirm password')"
+                :placeholder="__('Konfirmasi password')"
                 viewable
             />
 

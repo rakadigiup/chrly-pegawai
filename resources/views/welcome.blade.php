@@ -18,10 +18,10 @@
             <div class="w-full max-w-2xl space-y-8">
                 <header class="flex items-center justify-between border-b border-gray-200 dark:border-zinc-800 pb-6">
                     <div class="flex items-center gap-2">
-                        <div class="w-8 h-8 bg-zinc-900 dark:bg-white rounded flex items-center justify-center text-white dark:text-black font-bold">
-                            C
+                        <div class="w-8 h-8 bg-blue-600 dark:bg-blue-400 rounded flex items-center justify-center text-white dark:text-black font-bold">
+                            W
                         </div>
-                        <h1 class="text-xl font-bold">{{ config('app.name', 'Sistem Celry') }}</h1>
+                        <h1 class="text-xl font-bold">{{ config('app.name', 'Wisata App') }}</h1>
                     </div>
 
                     @if (Route::has('login'))
@@ -29,9 +29,9 @@
                             @auth
                                 <a href="{{ url('/dashboard') }}" class="text-sm font-medium hover:underline">Dashboard</a>
                             @else
-                                <a href="{{ route('login') }}" class="text-sm font-medium hover:underline">Log in</a>
+                                <a href="{{ route('login') }}" class="text-sm font-medium hover:underline">Masuk</a>
                                 @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="text-sm font-medium hover:underline">Register</a>
+                                    <a href="{{ route('register') }}" class="text-sm font-medium hover:underline">Registrasi</a>
                                 @endif
                             @endauth
                         </nav>
@@ -40,27 +40,33 @@
 
                 <main class="space-y-6">
                     <div class="space-y-4">
-                        <h2 class="text-3xl font-extrabold tracking-tight">Platform Manajemen Karyawan</h2>
+                        <h2 class="text-3xl font-extrabold tracking-tight">Sistem Registrasi Wisatawan</h2>
                         <p class="text-lg leading-relaxed text-gray-600 dark:text-gray-400">
-                            Sistem Celry dirancang sebagai platform manajemen karyawan yang fokus pada efisiensi operasional perusahaan melalui tiga fungsi CRUD utama, yaitu Manajemen User untuk mengelola data identitas dan hak akses akun, Manajemen Pekerjaan untuk pembagian tugas serta monitoring progres kerja staf, dan Manajemen Inventaris Kantor untuk mendata aset perusahaan yang digunakan karyawan.
+                            Selamat datang di portal pendaftaran wisatawan. Untuk kenyamanan dan keamanan bersama, seluruh pengunjung diwajibkan untuk melakukan registrasi data diri dan anggota rombongan sebelum memasuki kawasan wisata.
                         </p>
                     </div>
 
-                    <div class="p-6 bg-zinc-50 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800">
+                    <div class="p-6 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
                         <p class="text-sm italic text-gray-500">
-                            "Dalam alur sistem ini, Admin memiliki kendali penuh terhadap seluruh database dan audit organisasi, sementara peran Celry-Pegawai berfungsi sebagai staf manajemen yang menginput data operasional dan memperbarui status pekerjaan harian secara sistematis."
+                            "Pastikan data yang Anda masukkan akurat, termasuk jumlah anggota rombongan dan nomor telepon yang dapat dihubungi untuk mempermudah koordinasi selama di lokasi wisata."
                         </p>
                     </div>
 
                     <div class="flex gap-4">
-                        <a href="{{ route('login') }}" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-zinc-900 hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200 transition">
-                            Mulai Sekarang
-                        </a>
+                        @auth
+                            <a href="{{ url('/dashboard') }}" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-500 dark:bg-blue-400 dark:text-black dark:hover:bg-blue-300 transition">
+                                Lihat Data Saya
+                            </a>
+                        @else
+                            <a href="{{ route('register') }}" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-500 dark:bg-blue-400 dark:text-black dark:hover:bg-blue-300 transition">
+                                Registrasi Sekarang
+                            </a>
+                        @endauth
                     </div>
                 </main>
 
                 <footer class="pt-12 text-sm text-gray-500">
-                    &copy; {{ date('Y') }} {{ config('app.name', 'Sistem Celry') }}. Dibuat untuk efisiensi operasional.
+                    &copy; {{ date('Y') }} {{ config('app.name', 'Wisata App') }}. Portal Manajemen Pengunjung Kawasan Wisata.
                 </footer>
             </div>
         </div>

@@ -10,6 +10,7 @@
                 <flux:table.column>Nama</flux:table.column>
                 <flux:table.column>Email</flux:table.column>
                 <flux:table.column>Role</flux:table.column>
+                <flux:table.column>No HP</flux:table.column>
                 <flux:table.column></flux:table.column>
             </flux:table.columns>
             <flux:table.rows>
@@ -21,10 +22,11 @@
                         </flux:table.cell>
                         <flux:table.cell>{{ $user->email }}</flux:table.cell>
                         <flux:table.cell>
-                            <flux:badge :color="$user->role === 'admin' ? 'purple' : 'blue'" size="sm">
+                            <flux:badge :color="$user->role === 'admin' ? 'purple' : ($user->role === 'visitor' ? 'green' : 'blue')" size="sm">
                                 {{ ucfirst($user->role) }}
                             </flux:badge>
                         </flux:table.cell>
+                        <flux:table.cell>{{ $user->phone ?? '-' }}</flux:table.cell>
                         <flux:table.cell>
                             <div class="flex items-center gap-2">
                                 <flux:button wire:click="editUser({{ $user->id }})" variant="ghost" icon="pencil" size="sm" />
@@ -41,20 +43,32 @@
         </div>
     </flux:card>
 
-    <flux:modal wire:model="showModal" class="md:w-96 space-y-6">
+    <flux:modal wire:model="showModal" class="md:w-[500px] space-y-6">
         <div>
             <flux:heading size="lg">{{ $editingUser ? 'Edit User' : 'Tambah User' }}</flux:heading>
             <flux:subheading>Isi detail informasi user di bawah ini.</flux:subheading>
         </div>
 
         <form wire:submit="save" class="space-y-4">
-            <flux:input wire:model="name" label="Nama Lengkap" placeholder="Masukkan nama..." />
-            <flux:input wire:model="email" label="Alamat Email" type="email" placeholder="email@contoh.com" />
+            <div class="grid grid-cols-2 gap-4">
+                <flux:input wire:model="name" label="Nama Lengkap" placeholder="Masukkan nama..." />
+                <flux:input wire:model="email" label="Alamat Email" type="email" placeholder="email@contoh.com" />
+            </div>
             
             <flux:select wire:model="role" label="Role">
                 <option value="admin">Admin</option>
+                <option value="visitor">Wisatawan</option>
                 <option value="pegawai">Pegawai</option>
             </flux:select>
+
+            <div x-show="$wire.role === 'visitor'" class="space-y-4 border-t pt-4 border-zinc-100 dark:border-zinc-800">
+                <div class="grid grid-cols-2 gap-4">
+                    <flux:input wire:model="phone" label="No HP" placeholder="08..." />
+                    <flux:input wire:model="arrival_date" label="Tanggal Datang" type="date" />
+                </div>
+                <flux:input wire:model="member_count" label="Jumlah Anggota" type="number" min="1" />
+                <flux:textarea wire:model="members" label="Daftar Anggota" placeholder="Nama-nama anggota..." />
+            </div>
 
             <flux:input wire:model="password" label="Password" type="password" placeholder="{{ $editingUser ? 'Kosongkan jika tidak ingin mengubah' : 'Minimal 8 karakter' }}" />
 

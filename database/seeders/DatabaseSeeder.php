@@ -13,19 +13,36 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = User::factory()->create([
-            'name' => 'Admin Celry',
-            'email' => 'admin@celry.com',
-            'password' => bcrypt('password'),
-            'role' => 'admin',
-        ]);
+        $admin = User::updateOrCreate(
+            ['email' => 'admin@wisata.com'],
+            [
+                'name' => 'Admin Wisata',
+                'password' => bcrypt('password'),
+                'role' => 'admin',
+            ]
+        );
 
-        $pegawai = User::factory()->create([
-            'name' => 'Pegawai Celry',
-            'email' => 'pegawai@celry.com',
-            'password' => bcrypt('password'),
-            'role' => 'pegawai',
-        ]);
+        $pegawai = User::updateOrCreate(
+            ['email' => 'petugas@wisata.com'],
+            [
+                'name' => 'Petugas Lapangan',
+                'password' => bcrypt('password'),
+                'role' => 'pegawai',
+            ]
+        );
+
+        $visitor = User::updateOrCreate(
+            ['email' => 'budi@example.com'],
+            [
+                'name' => 'Budi Santoso',
+                'password' => bcrypt('password'),
+                'role' => 'visitor',
+                'phone' => '081234567890',
+                'member_count' => 3,
+                'members' => "Budi Santoso\nSiti Aminah\nAndi Prasetyo",
+                'arrival_date' => now()->format('Y-m-d'),
+            ]
+        );
 
         // Seed Produk (Inventaris)
         \App\Models\Produk::create([

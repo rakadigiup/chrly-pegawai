@@ -11,21 +11,20 @@
             </flux:sidebar.header>
 
             <flux:sidebar.nav>
-                <flux:sidebar.group :heading="__('Manajemen')" class="grid">
+                <flux:sidebar.group :heading="__('Menu')" class="grid">
                     <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </flux:sidebar.item>
+
                     @if(auth()->user()->role === 'admin')
                         <flux:sidebar.item icon="users" :href="route('users.index')" :current="request()->routeIs('users.index')" wire:navigate>
-                            {{ __('Manajemen User') }}
+                            {{ __('Manajemen Wisatawan') }}
                         </flux:sidebar.item>
-                    @endif
 
-                    <flux:sidebar.item icon="briefcase" :href="route('pekerjaan.index')" :current="request()->routeIs('pekerjaan.index')" wire:navigate>
-                        {{ __('Manajemen Pekerjaan') }}
-                    </flux:sidebar.item>
+                        <flux:sidebar.item icon="briefcase" :href="route('pekerjaan.index')" :current="request()->routeIs('pekerjaan.index')" wire:navigate>
+                            {{ __('Manajemen Tugas') }}
+                        </flux:sidebar.item>
 
-                    @if(auth()->user()->role === 'admin')
                         <flux:sidebar.item icon="archive-box" :href="route('inventaris.index')" :current="request()->routeIs('inventaris.index')" wire:navigate>
                             {{ __('Manajemen Inventaris') }}
                         </flux:sidebar.item>

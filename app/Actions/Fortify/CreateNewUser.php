@@ -28,6 +28,11 @@ class CreateNewUser implements CreatesNewUsers
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => $input['password'],
+            'members' => $input['members'],
+            'member_count' => $input['member_count'],
+            'phone' => $input['phone'],
+            'arrival_date' => $input['arrival_date'],
+            'role' => 'visitor', // Default role for new registrations
         ]);
     }
 }
