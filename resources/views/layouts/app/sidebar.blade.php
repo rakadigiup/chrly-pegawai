@@ -20,14 +20,6 @@
                         <flux:sidebar.item icon="users" :href="route('users.index')" :current="request()->routeIs('users.index')" wire:navigate>
                             {{ __('Manajemen Wisatawan') }}
                         </flux:sidebar.item>
-
-                        <flux:sidebar.item icon="briefcase" :href="route('pekerjaan.index')" :current="request()->routeIs('pekerjaan.index')" wire:navigate>
-                            {{ __('Manajemen Tugas') }}
-                        </flux:sidebar.item>
-
-                        <flux:sidebar.item icon="archive-box" :href="route('inventaris.index')" :current="request()->routeIs('inventaris.index')" wire:navigate>
-                            {{ __('Manajemen Inventaris') }}
-                        </flux:sidebar.item>
                     @endif
                 </flux:sidebar.group>
             </flux:sidebar.nav>

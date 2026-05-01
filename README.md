@@ -6,7 +6,6 @@
 1. **Registrasi Wisatawan**: Form pendaftaran mandiri bagi pengunjung (Nama, No HP, Tanggal Datang, Rombongan).
 2. **Dashboard Wisatawan**: Ringkasan data kunjungan untuk verifikasi petugas loket.
 3. **Manajemen Admin**: Monitoring statistik kedatangan dan pengelolaan data seluruh pengunjung.
-4. **Manajemen Tugas & Inventaris**: Fitur internal untuk staf operasional kawasan wisata.
 
 ## Teknologi Utama
 - **Framework**: Laravel 13
@@ -99,6 +98,27 @@ php artisan optimize:clear
 php artisan view:clear
 php artisan config:clear
 ```
+
+---
+
+## Cheat Sheet Perintah (Shortcut)
+
+Berikut adalah daftar perintah yang sering digunakan untuk pengembangan dan troubleshooting:
+
+### Pengembangan
+- **Jalankan Aplikasi**: `composer run dev`
+- **Reset Database & Data Contoh**: `php artisan migrate:fresh --seed`
+- **Update Library**: `composer install && npm install`
+
+### Git (Kolaborasi)
+- **Ambil Update Terbaru**: `git pull origin main`
+- **Simpan Perubahan**: `git add . && git commit -m "pesan" && git push origin main`
+
+### Troubleshooting
+- **Bersihkan Seluruh Cache**: `php artisan optimize:clear`
+- **Matikan Port 8000 (Jika Error)**: `fuser -k 8000/tcp`
+- **Matikan Port 5173 (Vite)**: `fuser -k 5173/tcp`
+- **Hapus & Install Ulang JS**: `rm -rf node_modules package-lock.json && npm install`
 
 ---
 

@@ -55,13 +55,4 @@ class User extends Authenticatable
         return $this->role === 'pegawai';
     }
 
-    public function pekerjaanDitugaskan(): HasMany
-    {
-        return $this->hasMany(Pekerjaan::class, 'assigned_to');
-    }
-
-    public function pekerjaanDibuat(): HasMany
-    {
-        return $this->hasMany(Pekerjaan::class, 'created_by');
-    }
 }
