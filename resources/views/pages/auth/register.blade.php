@@ -40,6 +40,15 @@
                 :placeholder="__('08123456789')"
             />
 
+            <!-- Address -->
+            <flux:textarea
+                name="address"
+                :label="__('Alamat Lengkap')"
+                :value="old('address')"
+                required
+                :placeholder="__('Masukkan alamat asal Anda...')"
+            />
+
             <!-- Arrival Date -->
             <flux:input
                 name="arrival_date"
@@ -47,26 +56,6 @@
                 :value="old('arrival_date')"
                 type="date"
                 required
-            />
-
-            <!-- Member Count -->
-            <flux:input
-                name="member_count"
-                :label="__('Jumlah Anggota')"
-                :value="old('member_count')"
-                type="number"
-                min="1"
-                required
-                :placeholder="__('Contoh: 1')"
-            />
-
-            <!-- Members -->
-            <flux:textarea
-                name="members"
-                :label="__('Nama Anggota')"
-                :value="old('members')"
-                required
-                :placeholder="__('Sebutkan nama-nama anggota (pisahkan dengan koma)')"
             />
 
             <!-- Password -->

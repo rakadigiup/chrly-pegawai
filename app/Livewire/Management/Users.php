@@ -14,7 +14,7 @@ class Users extends Component
     use WithPagination;
 
     public $name, $email, $role = 'visitor', $password;
-    public $members, $member_count, $phone, $arrival_date;
+    public $phone, $address, $arrival_date;
     public $editingUser = null;
     public $showModal = false;
 
@@ -23,11 +23,9 @@ class Users extends Component
         return [
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . ($this->editingUser->id ?? ''),
-            'role' => 'required|in:admin,visitor,pegawai',
             'password' => $this->editingUser ? 'nullable|min:8' : 'required|min:8',
-            'members' => 'nullable|string',
-            'member_count' => 'nullable|integer|min:1',
             'phone' => 'nullable|string',
+            'address' => 'nullable|string',
             'arrival_date' => 'nullable|date',
         ];
     }
@@ -43,10 +41,8 @@ class Users extends Component
         $this->editingUser = $user;
         $this->name = $user->name;
         $this->email = $user->email;
-        $this->role = $user->role;
-        $this->members = $user->members;
-        $this->member_count = $user->member_count;
         $this->phone = $user->phone;
+        $this->address = $user->address;
         $this->arrival_date = $user->arrival_date?->format('Y-m-d');
         $this->password = '';
         $this->showModal = true;
@@ -59,10 +55,8 @@ class Users extends Component
         $data = [
             'name' => $this->name,
             'email' => $this->email,
-            'role' => $this->role,
-            'members' => $this->members,
-            'member_count' => $this->member_count,
             'phone' => $this->phone,
+            'address' => $this->address,
             'arrival_date' => $this->arrival_date,
         ];
 
@@ -95,10 +89,8 @@ class Users extends Component
         $this->editingUser = null;
         $this->name = '';
         $this->email = '';
-        $this->role = 'visitor';
-        $this->members = '';
-        $this->member_count = 1;
         $this->phone = '';
+        $this->address = '';
         $this->arrival_date = '';
         $this->password = '';
     }

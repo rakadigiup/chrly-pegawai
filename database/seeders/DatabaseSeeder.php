@@ -38,8 +38,7 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('password'),
                 'role' => 'visitor',
                 'phone' => '081234567890',
-                'member_count' => 3,
-                'members' => "Budi Santoso\nSiti Aminah\nAndi Prasetyo",
+                'address' => 'Jl. Merdeka No. 123, Jakarta Pusat',
                 'arrival_date' => now()->format('Y-m-d'),
             ]
         );

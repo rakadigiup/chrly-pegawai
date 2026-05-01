@@ -3,71 +3,45 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>{{ config('app.name', 'Sistem Celry') }}</title>
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
-
-        <!-- Styles / Scripts -->
+        <title>Taman Mini Indonesia Indah</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] dark:text-[#EDEDEC] antialiased">
-        <div class="min-h-screen flex flex-col items-center justify-center p-6">
-            <div class="w-full max-w-2xl space-y-8">
-                <header class="flex items-center justify-between border-b border-gray-200 dark:border-zinc-800 pb-6">
-                    <div class="flex items-center gap-2">
-                        <div class="w-8 h-8 bg-blue-600 dark:bg-blue-400 rounded flex items-center justify-center text-white dark:text-black font-bold">
-                            W
-                        </div>
-                        <h1 class="text-xl font-bold">{{ config('app.name', 'Wisata App') }}</h1>
+    <body class="antialiased bg-zinc-50 dark:bg-zinc-950">
+        <div class="relative min-h-screen flex flex-col items-center justify-center">
+            <div class="max-w-2xl w-full px-6 py-12 text-center space-y-8">
+                <div class="flex justify-center">
+                    <div class="w-16 h-16 bg-zinc-900 dark:bg-zinc-100 rounded-2xl flex items-center justify-center text-white dark:text-black font-bold text-2xl shadow-lg">
+                        TM
                     </div>
+                </div>
 
-                    @if (Route::has('login'))
-                        <nav class="flex gap-4">
-                            @auth
-                                <a href="{{ url('/dashboard') }}" class="text-sm font-medium hover:underline">Dashboard</a>
-                            @else
-                                <a href="{{ route('login') }}" class="text-sm font-medium hover:underline">Masuk</a>
-                                @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="text-sm font-medium hover:underline">Registrasi</a>
-                                @endif
-                            @endauth
-                        </nav>
-                    @endif
-                </header>
+                <div class="space-y-4">
+                    <h1 class="text-4xl font-bold text-zinc-900 dark:text-white tracking-tight">
+                        Taman Mini Indonesia Indah
+                    </h1>
+                    <p class="text-lg text-zinc-600 dark:text-zinc-400">
+                        Selamat datang di portal registrasi wisatawan. Silakan daftar atau login untuk mengelola kunjungan Anda.
+                    </p>
+                </div>
 
-                <main class="space-y-6">
-                    <div class="space-y-4">
-                        <h2 class="text-3xl font-extrabold tracking-tight">Sistem Registrasi Wisatawan</h2>
-                        <p class="text-lg leading-relaxed text-gray-600 dark:text-gray-400">
-                            Selamat datang di portal pendaftaran wisatawan. Untuk kenyamanan dan keamanan bersama, seluruh pengunjung diwajibkan untuk melakukan registrasi data diri dan anggota rombongan sebelum memasuki kawasan wisata.
-                        </p>
-                    </div>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    @auth
+                        <flux:button :href="url('/dashboard')" variant="primary" class="w-full sm:w-auto px-8 py-3">
+                            Ke Dashboard
+                        </flux:button>
+                    @else
+                        <flux:button :href="route('register')" variant="primary" class="w-full sm:w-auto px-8 py-3">
+                            Registrasi Wisatawan
+                        </flux:button>
+                        <flux:button :href="route('login')" variant="ghost" class="w-full sm:w-auto px-8 py-3">
+                            Masuk Ke Akun
+                        </flux:button>
+                    @endauth
+                </div>
 
-                    <div class="p-6 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
-                        <p class="text-sm italic text-gray-500">
-                            "Pastikan data yang Anda masukkan akurat, termasuk jumlah anggota rombongan dan nomor telepon yang dapat dihubungi untuk mempermudah koordinasi selama di lokasi wisata."
-                        </p>
-                    </div>
-
-                    <div class="flex gap-4">
-                        @auth
-                            <a href="{{ url('/dashboard') }}" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-500 dark:bg-blue-400 dark:text-black dark:hover:bg-blue-300 transition">
-                                Lihat Data Saya
-                            </a>
-                        @else
-                            <a href="{{ route('register') }}" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-500 dark:bg-blue-400 dark:text-black dark:hover:bg-blue-300 transition">
-                                Registrasi Sekarang
-                            </a>
-                        @endauth
-                    </div>
-                </main>
-
-                <footer class="pt-12 text-sm text-gray-500">
-                    &copy; {{ date('Y') }} {{ config('app.name', 'Wisata App') }}. Portal Manajemen Pengunjung Kawasan Wisata.
-                </footer>
+                <div class="pt-8 text-sm text-zinc-500">
+                    &copy; {{ date('Y') }} Taman Mini Indonesia Indah. Seluruh hak cipta dilindungi.
+                </div>
             </div>
         </div>
     </body>

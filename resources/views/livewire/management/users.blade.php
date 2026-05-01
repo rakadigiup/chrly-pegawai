@@ -9,8 +9,8 @@
             <flux:table.columns>
                 <flux:table.column>Nama</flux:table.column>
                 <flux:table.column>Email</flux:table.column>
-                <flux:table.column>Role</flux:table.column>
                 <flux:table.column>No HP</flux:table.column>
+                <flux:table.column>Alamat</flux:table.column>
                 <flux:table.column></flux:table.column>
             </flux:table.columns>
             <flux:table.rows>
@@ -21,12 +21,10 @@
                             <span class="font-medium">{{ $user->name }}</span>
                         </flux:table.cell>
                         <flux:table.cell>{{ $user->email }}</flux:table.cell>
-                        <flux:table.cell>
-                            <flux:badge :color="$user->role === 'admin' ? 'purple' : ($user->role === 'visitor' ? 'green' : 'blue')" size="sm">
-                                {{ ucfirst($user->role) }}
-                            </flux:badge>
-                        </flux:table.cell>
                         <flux:table.cell>{{ $user->phone ?? '-' }}</flux:table.cell>
+                        <flux:table.cell>
+                            <span class="truncate block max-w-[200px]" title="{{ $user->address }}">{{ $user->address ?? '-' }}</span>
+                        </flux:table.cell>
                         <flux:table.cell>
                             <div class="flex items-center gap-2">
                                 <flux:button wire:click="editUser({{ $user->id }})" variant="ghost" icon="pencil" size="sm" />
@@ -55,19 +53,12 @@
                 <flux:input wire:model="email" label="Alamat Email" type="email" placeholder="email@contoh.com" />
             </div>
             
-            <flux:select wire:model="role" label="Role">
-                <option value="admin">Admin</option>
-                <option value="visitor">Wisatawan</option>
-                <option value="pegawai">Pegawai</option>
-            </flux:select>
-
-            <div x-show="$wire.role === 'visitor'" class="space-y-4 border-t pt-4 border-zinc-100 dark:border-zinc-800">
+            <div class="space-y-4 border-t pt-4 border-zinc-100 dark:border-zinc-800">
                 <div class="grid grid-cols-2 gap-4">
                     <flux:input wire:model="phone" label="No HP" placeholder="08..." />
                     <flux:input wire:model="arrival_date" label="Tanggal Datang" type="date" />
                 </div>
-                <flux:input wire:model="member_count" label="Jumlah Anggota" type="number" min="1" />
-                <flux:textarea wire:model="members" label="Daftar Anggota" placeholder="Nama-nama anggota..." />
+                <flux:textarea wire:model="address" label="Alamat Lengkap" placeholder="Alamat asal..." />
             </div>
 
             <flux:input wire:model="password" label="Password" type="password" placeholder="{{ $editingUser ? 'Kosongkan jika tidak ingin mengubah' : 'Minimal 8 karakter' }}" />

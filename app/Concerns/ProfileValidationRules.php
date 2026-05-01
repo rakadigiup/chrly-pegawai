@@ -18,9 +18,8 @@ trait ProfileValidationRules
         return [
             'name' => $this->nameRules(),
             'email' => $this->emailRules($userId),
-            'members' => ['required', 'string'],
-            'member_count' => ['required', 'integer', 'min:1'],
-            'phone' => ['required', 'string'],
+            'phone' => ['required', 'string', 'max:20'],
+            'address' => ['required', 'string', 'max:500'],
             'arrival_date' => ['required', 'date'],
         ];
     }
